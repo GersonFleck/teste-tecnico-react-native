@@ -1,15 +1,28 @@
+const api = {   
+getPlayers: async (params) => {
+    let response;
+    try {
+      response = await fetch(
+        `https://api.balldontlie.io/v1/players?${new URLSearchParams(params)}`,
+        {
+          headers: {
+            'Authorization': '3edfdb7f-9626-4d3b-b65e-bcafda77613b',
+            'Content-Type': 'application/json'
+          
+          },
+          cache: 'no-store'
+        }
+      );
+    } catch (err) {
+      throw new Error('Network request failed');
+    }
 
-const api = {
-  getPlayers: async (params) => {
-    const response = await fetch(`https://api.balldontlie.io/v1/players?${new URLSearchParams(params)}`, {
-      headers: {
-        'Authorization': '3edfdb7f-9626-4d3b-b65e-bcafda77613b',
-        'Content-Type': 'application/json'
-      }
-    });
+    if (!response.ok) {
+      throw new Error(`HTTP error ${response.status}`);
+    }
+
     return response.json();
   }
 };
 
-console.log('API configurada com sucesso');
 export default api;

@@ -29,20 +29,29 @@ useEffect(() =>{
 const findPlayers = async () => {
   try {
     const response = await api.getPlayers({ 
-      per_page: 20 
+      per_page: '20' 
     });
 
     setPlayers(response.data || []);
     
   } catch (error) {
-    console.error('Erro na requisição:', {
+     if (error.message.includes('Network Error')) {
+      Alert.alert(
+        'Sem Conexão', 
+        [{ text: 'OK' }]
+      );
+      setPlayers([])
+      } else {
+    console.error('Erro na API:', {
       message: error.message,
-      response: error.response?.data
+      status: error.response?.status,
+      data: error.response?.data
     });
-    setPlayers([]); 
-  } finally {
-    setLoading(false);
   }
+  setPlayers([]);
+} finally {
+  setLoading(false);
+}
 };
  findPlayers();
 

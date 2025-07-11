@@ -14,7 +14,7 @@ function Header({ selectedPlayer, onPlayerPress }) {
           style={styles.logo}
           resizeMode="contain"
         />
-        <Text style={styles.title}>NBA</Text>
+        <Text style={styles.title}>NBA Statts</Text>
       </View>
 
       <View style={styles.playerHighlight}>
