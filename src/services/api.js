@@ -11,6 +11,5 @@ const api = {
   }
 };
 
-// Verificação
 console.log('API configurada com sucesso');
 export default api;
